@@ -1,0 +1,95 @@
+<%- include('./includes/head.ejs') %>
+    <title>Sign Up</title>
+  </head>
+  <body>
+    <div class="container-sm d-flex flex-column" id="form">
+      <h1>Sign up</h1>
+      <form class="g-2" method="POST" action="/signup">
+        <div>
+          <label for="username">Username</label>
+          <input
+            class="form-control"
+            type="username"
+            id="username"
+            name="username"
+            required
+          />
+        </div>
+        <div>
+          <label for="password">Password</label>
+          <input
+            class="form-control"
+            type="password"
+            id="password"
+            name="password"
+            required
+          />
+        </div>
+        <div>
+          <label for="password-confirmation">Confirm Password</label>
+          <input
+            class="form-control"
+            type="password"
+            id="password-confirmation"
+            name="password-confirmation"
+            required
+          />
+        </div>
+        <div>
+          <label for="name">Name</label>
+          <input class="form-control" type="text" id="name" name="name" />
+        </div>
+        <div>
+          <label for="weight">Weight (lbs)</label>
+          <input class="form-control" type="number" id="weight" name="weight" />
+        </div>
+        <br />
+        <h3>Height</h3>
+        <div class="row">
+          <div class="col">
+            <label for="feet">Feet</label>
+            <input class="form-control" type="number" id="feet" name="feet" />
+          </div>
+
+          <div class="col">
+            <label for="inches">Inches</label>
+            <input
+              class="form-control"
+              type="number"
+              id="inches"
+              name="inches"
+            />
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col">
+            <label for="dob">Date of Birth</label>
+            <input class="form-control" type="date" id="dob" name="dob" />
+          </div>
+
+          <div class="col">
+            <label for="gender">Gender</label>
+            <select class="form-select" name="gender" id="gender">
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+        </div>
+        <div>
+          <label for="intensity">Intensity</label>
+          <select class="form-select" name="intensity" id="intensity">
+            <option value="beginner">Beginner</option>
+            <option value="intermediate">Intermediate</option>
+            <option value="expert">Expert</option>
+          </select>
+        </div>
+
+        <input class="btn btn-secondary m-2" type="submit" value="Sign Up" />
+        <p>Already a user?</p>
+        <a href="/login">Log in</a>
+      </form>
+    </div>
+<%- include('./includes/foot.ejs') %>
+  

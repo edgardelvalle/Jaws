@@ -1,0 +1,61 @@
+  <%- include('./includes/head.ejs') %>
+    <title>Dashboard</title>
+  </head>
+  <body>
+    <%- include('./includes/nav.ejs') %>
+    <div class="container d-flex flex-column align-items-center">
+      <div class='container d-flex align-items-center flex-column'>
+        <h1>@<%= username %></h1>
+        <h5><%= followers.length %> followers</h5>
+        <h5><%= following.length %> following</h5>
+      </div>
+      <% if (!searched_user_is_self) {%>
+        <% if (!user_is_followed) {%>
+          <form action="/user/<%= username %>/follow" method='POST'>
+            <input type="submit" value='Follow'>
+          </form>
+          <% } else { %>
+            <form action="/user/<%= username %>/unfollow" method='POST'>
+              <input type="submit" value='Unfollow'>
+            </form>
+        <% } %>
+      <% } %>
+        
+      <% if (searched_user_is_self) { %>
+      <h2>My Workout Plan</h1>
+      <div class="container m-3 d-flex flex-column align-items-center">
+        <h4>Muscle groups:</h4>
+        <div>
+          <% if (muscle_preference.length > 0) {%>
+            <% muscle_preference.forEach((label) => { %>
+              <p class="badge bg-secondary"><%= label %></p>
+            <% }) %>
+          <%} else {%>
+              <p>You have not selected your muscle groups. <a href='/musclePreference'>Add your muscle preferences here.</a></p>
+          <% } %>
+        </div>
+        <h4>Available equipment:</h4>
+        <div>
+          <% if (current_equipment.length > 0) {%>
+            <% current_equipment.forEach((label) => { %>
+              <p class="badge bg-secondary"><%= label %></p>
+            <% }) %>
+          <% } else { %>
+              <p>You have not selected your available equipment. <a href='/availableequipment'>Add your equipment here.</a></p>
+          <% } %>
+        </div>
+        <%- include('./includes/workout_routine.ejs') %>
+      </div>
+      <% } else {%>
+        <% if (!searched_user_is_self && user_is_followed) { %>
+          <h2>Workout Plan</h1>
+          <div class="container m-3 ">
+            <%- include('./includes/workout_routine.ejs') %>
+          </div>
+          <% } else { %>
+            <p>Follow user to view workout plan.</p>
+          <% } %>
+      <% } %>
+
+    </div>
+<%- include('./includes/foot.ejs') %>

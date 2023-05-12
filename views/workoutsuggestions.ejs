@@ -1,0 +1,38 @@
+<%- include('./includes/head.ejs') %>
+<title>Select Workout</title>
+</head>
+
+<body>
+  <%- include('./includes/nav.ejs') %>
+
+  <div class="container-sm d-flex flex-column align-items-center" id="form">
+    <h1>Workout Suggestions</h1>
+    <h2>Your current workouts.</h2>
+    <%- include('./includes/workout_routine.ejs') %>
+    <form class='d-flex flex-column align-items-center m-3' method='POST' action="/workoutsuggestions">
+      <input class='btn btn-primary' type="submit" value='Generate new workouts'>
+    </form>
+    <div class="d-flex flex-column align-items-center">
+      <h2>Here are the workout suggestions based on your profile.</h2>
+      <div class='d-flex flex-wrap align-items-center justify-content-around'>
+        <% suggestions.forEach(({_id, name, muscle, instructions}) => { %>
+        <div class='card m-2 w-100'>
+          <div class='card-body'>
+            <h5 class="card-title"> <%= name %> </h5>
+            <details>
+              <summary>View Instructions</summary>
+              <p class="card-text"><%= instructions %></p>
+            </details>
+            <form action="/workoutsuggestions/addworkout" method='POST'>
+              <input class='btn btn-secondary' type="submit" value='Add Workout'>
+              <input type="hidden" name='workoutId' value='<%= _id %>'>
+            </form>
+          </div>
+        </div>
+        <% }) %>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <%- include('./includes/foot.ejs') %>

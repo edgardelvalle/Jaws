@@ -1,0 +1,33 @@
+<%- include('./includes/head.ejs') %>
+    <title>Available Equipment</title>
+  </head>
+  <body>
+    <div class="container-sm d-flex flex-column" id="form">
+      <h1>Which muscle groups would you like to workout this week?</h1>
+      <form
+        class="d-flex flex-column align-items-center"
+        method="POST"
+        action="/musclePreference"
+      >
+        <div class="container d-flex flex-wrap">
+          <% muscleGroups.forEach(({param, label}) => { %>
+          <div class="m-2">
+            <input
+              class="btn-check"
+              type="checkbox"
+              name="musclepreference"
+              value="<%=param%>"
+              id="<%=param%>"
+            />
+            <label class="btn btn-outline-primary" for="<%= param %>"
+              ><%= label %></label
+            >
+          </div>
+          <% }) %>
+        </div>
+        <input class="btn btn-secondary m-1" type="submit" value="Save" />
+        <a href="/user/<%= username %>">Cancel</a>
+      </form>
+    </div>
+<%- include('./includes/foot.ejs') %>
+

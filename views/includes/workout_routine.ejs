@@ -1,0 +1,52 @@
+<% if (workout_routine.length > 0) { %> <% workout_routine.forEach(({workoutId,
+name, sets, reps, muscle, instructions,completed}) => { %>
+<div class="card m-2 w-100">
+  <div class="card-body">
+    <div class="d-flex justify-content-between">
+      <div>
+        <h5 class="card-title"><%= name %></h5>
+        <div class="d-flex justify-content-between">
+          <p>Sets: <span><%= sets %></span></p>
+          <p>Reps: <span><%= reps %></span></p>
+        </div>
+      </div>
+      <% if(completed) { %>
+      <p>Completed</p>
+      <% } else { %>
+      <p>Not completed</p>
+      <% } %>
+    </div>
+
+    <details>
+      <summary>View Instructions</summary>
+      <p class="card-text"><%= instructions %></p>
+    </details>
+
+    <% if(searched_user_is_self) {%>
+    <div class="container d-flex justify-content-between">
+      <% if(!completed) {%>
+      <form
+        action="/user/<%= authenticatedUser %>/completeworkout"
+        method="POST"
+        class="m-1"
+      >
+        <input class="btn btn-primary" type="submit" value="Mark as complete" />
+        <input type="hidden" name="workoutId" value="<%= workoutId %>" />
+      </form>
+      <% } %>
+      <form
+        action="/user/<%= authenticatedUser %>/removeworkout"
+        method="POST"
+        class="m-1"
+      >
+        <input class="btn btn-secondary" type="submit" value="Remove Workout" />
+        <input type="hidden" name="workoutId" value="<%= workoutId %>" />
+      </form>
+
+      <% } %>
+    </div>
+  </div>
+</div>
+<% }) %> <% } else {%>
+<p>You do not have any workouts.</p>
+<% } %>

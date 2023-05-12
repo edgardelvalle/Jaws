@@ -1,0 +1,35 @@
+<%- include('./includes/head.ejs') %>
+    <title>Available Equipment</title>
+  </head>
+  <body>
+    <div class="container-sm d-flex flex-column" id="form">
+      <h1>Select available equipment</h1>
+      <form
+        class="d-flex flex-column align-items-center"
+        method="POST"
+        action="/availableequipment"
+      >
+        <div class="container d-flex flex-wrap">
+            <% equipment.forEach(({param, label}) => { %>
+            <div class="m-2">
+              <input
+                class="btn-check"
+                type="checkbox"
+                value="<%=param%>"
+                name='availableequipment'
+                id="<%=param%>"
+                autocomplete="off"
+              />
+              <label class="btn btn-outline-primary" for="<%= param %>"
+                ><%= label %></label
+              >
+            </div>
+            <% }) %>
+          </div>
+          <input class="btn btn-secondary m-1" type="submit" value="Save" />
+          <a href="/user/<%= username %>">Cancel</a>
+        </div>
+      </form>
+    </div>
+<%- include('./includes/foot.ejs') %>
+

@@ -1,0 +1,43 @@
+<%- include('./includes/head.ejs') %>
+    <title>Sign Up</title>
+  </head>
+  <body>
+    <div class="container-sm d-flex flex-column align-items-center" id="form">
+      <img style='margin: 20px;' src="images/logo.png" alt="">
+      <div class="form-group">
+        <form
+          class="d-flex flex-column align-items-center"
+          method="POST"
+          action="/login"
+        >
+          <div>
+            <label for="username">Username</label>
+            <input
+              class="form-control"
+              type="username"
+              id="username"
+              name="username"
+              required
+            />
+          </div>
+          <div>
+            <label for="password">Password</label>
+            <input
+              class="form-control"
+              type="password"
+              id="passsword"
+              name="password"
+            />
+          </div>
+          <input
+            class="align-self-center btn btn-primary m-2"
+            type="submit"
+            value="Log In"
+          />
+          <p>Not a User?</p>
+          <a href="/signup">Sign up</a>
+        </form>
+      </div>
+    </div>
+  <%- include('./includes/foot.ejs') %>
+
